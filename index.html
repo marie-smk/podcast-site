@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast : Science et Données</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e6f2ff;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+        }
+        header {
+            background-color: #2980b9;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+        nav {
+            background-color: #3498db;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+        .podcast-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #b3d9ff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .podcast-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 20px;
+        }
+        .audio-player {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #ecf0f1;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .podcast-summary {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .podcast-summary p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .resource-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .resource-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .resource-links li {
+            margin-bottom: 10px;
+        }
+        .resource-links li a:hover {
+            text-decoration: underline;
+        }
+        .model-diagram {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .model-diagram img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+        }
+        .credits {
+            background-color: #1f618d;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-top: 5px solid #3498db;
+            margin-top: 50px;
+        }
+        .credits h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .credits p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .credits a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .credits a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Podcast : Science et Données - Décoder la Recherche</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="#podcast">Podcast</a></li>
+        <li><a href="#ressources">Ressources</a></li>
+        <li><a href="credit.html">Crédits</a></li>
+    </ul>
+</nav>
+
+<div class="content">
+    <!-- Podcast Section -->
+    <section id="podcast" class="section podcast-container">
+        <h2 class="podcast-title">Écoutez le Podcast</h2>
+        <audio class="audio-player" controls>
+            <source src="podcast.mp3" type="audio/mp3">
+            Votre navigateur ne prend pas en charge l'élément audio.
+        </audio>
+
+        <div class="podcast-summary">
+            <p><strong>Résumé du Podcast :</strong> Dans cet épisode, plongez au cœur d'une recherche fascinante où mathématiques et médecine s'allient pour analyser les tumeurs. </br> Accompagnés de quatre expertes </br>– Shankavi Selvanathan, Marie Samaké, Grâce Soukou et Mariama Leye </br>– nous explorons comment les modèles mathématiques peuvent aider à différencier les tumeurs bénignes des malignes. De la collecte des données cliniques à l'application des modèles, découvrez les défis, les méthodologies et les résultats prometteurs de cette étude innovante. Un podcast accessible à tous, où la science devient claire et captivante.        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="ressources" class="section resource-links">
+        <h2>Ressources et Publications</h2>
+        <p>Pour accéder au travail des chercheuses du podcast, explorez le lien suivant :</p>
+        <ul>
+            <li><a href="https://drive.google.com/file/d/1lt4LqaibE9_vlmSbdvFuLCUZLMIgTbNN/view?usp=drive_link" target="_blank">Publication du travail des chercheuses</a></li>
+        </ul>
+    </section>
+</div>
+
+<!-- Credits Section -->
+<section class="credits">
+    <h2>Crédits</h2>
+    <p>Ce podcast est produit par l'équipe <strong>Science et Données</strong>. Pour plus d'informations sur notre équipe et nos projets, consultez notre page <a href="credit.html">Crédits</a>.</p>
+</section>
+
+</body>
+</html>
