@@ -604,13 +604,13 @@
     </footer>
 </div>
 
-<!-- RICKROLL MODAL -->
+<!-- CAGNOTTE MODAL -->
 <div class="modal-overlay" id="rickrollModal">
     <div class="modal-box">
         <button class="modal-close" onclick="closeRickroll()">✕</button>
-        <div class="modal-title">🎶 Merci pour votre générosité !</div>
+        <div class="modal-title">💧 L'eau, c'est la vie — Kirikou le sait !</div>
         <div class="modal-video">
-            <iframe id="rickrollFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <video id="cagnotteVideo" src="kirikou.mp4" controls autoplay style="width:100%;border-radius:12px;display:block;"></video>
         </div>
     </div>
 </div>
@@ -623,12 +623,14 @@
     }
 
     function openRickroll() {
-        document.getElementById('rickrollFrame').src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+        const v = document.getElementById('cagnotteVideo');
+        v.currentTime = 0;
+        v.play();
         document.getElementById('rickrollModal').classList.add('open');
     }
 
     function closeRickroll() {
-        document.getElementById('rickrollFrame').src = '';
+        document.getElementById('cagnotteVideo').pause();
         document.getElementById('rickrollModal').classList.remove('open');
     }
 
