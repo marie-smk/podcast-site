@@ -3,191 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crédits - Podcast : Science et Données</title>
+    <title>Crédits — Science et Données</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --sky: #e8f4fd;
+            --blue: #2563eb;
+            --blue-light: #60a5fa;
+            --teal: #0d9488;
+            --coral: #f97316;
+            --yellow: #fbbf24;
+            --purple: #7c3aed;
+            --white: #ffffff;
+            --dark: #0f172a;
+            --text: #1e293b;
+            --muted: #64748b;
+            --bg: #f0f7ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f8fc;
-            margin: 0;
-            padding: 0;
-            color: #333;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
 
-        header {
-            background-color: #1e88e5;
-            color: white;
-            text-align: center;
-            padding: 50px;
+        .blob-bg {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+        }
+        .blob {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
+            animation: blobFloat linear infinite;
+        }
+        .blob1 { width: 450px; height: 450px; background: #93c5fd; top: -80px; right: -80px; animation-duration: 20s; }
+        .blob2 { width: 380px; height: 380px; background: #fde68a; bottom: 5%; left: -60px; animation-duration: 17s; animation-delay: -5s; }
+        .blob3 { width: 300px; height: 300px; background: #5eead4; top: 50%; right: 20%; animation-duration: 23s; animation-delay: -9s; }
+
+        @keyframes blobFloat {
+            0%   { transform: translate(0,0) scale(1); }
+            33%  { transform: translate(30px,-20px) scale(1.04); }
+            66%  { transform: translate(-20px,30px) scale(0.97); }
+            100% { transform: translate(0,0) scale(1); }
         }
 
-        header h1 {
-            font-size: 40px;
-            margin: 0;
+        /* NAV */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(37,99,235,0.1);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 48px;
+        }
+        .nav-logo {
+            font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700;
+            color: var(--blue); padding: 18px 0; letter-spacing: -0.5px;
+        }
+        .nav-logo span { color: var(--coral); }
+        nav ul { list-style: none; display: flex; gap: 4px; }
+        nav ul li a {
+            display: block; text-decoration: none; font-size: 13px; font-weight: 500;
+            color: var(--muted); padding: 10px 16px; border-radius: 20px; transition: all 0.2s;
+        }
+        nav ul li a:hover, nav ul li a.active { color: var(--blue); background: rgba(37,99,235,0.08); }
+
+        /* HERO */
+        .page-hero {
+            position: relative; z-index: 1;
+            padding: 80px 60px 60px;
+            max-width: 900px; margin: 0 auto;
         }
 
-        .credits-container {
-            width: 80%;
-            margin: 40px auto;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: white; border: 1.5px solid rgba(37,99,235,0.2); border-radius: 30px;
+            padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--blue);
+            letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(37,99,235,0.1);
+            animation: fadeDown 0.5s ease both;
         }
 
-        .section-title {
-            font-size: 30px;
-            color: #1e88e5;
-            text-align: center;
-            margin-bottom: 20px;
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:none; } }
+        @keyframes fadeUp2  { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+
+        .page-hero h1 {
+            font-family: 'Fraunces', serif; font-size: clamp(38px, 5.5vw, 68px);
+            font-weight: 900; line-height: 1.08; color: var(--dark); margin-bottom: 16px;
+            animation: fadeDown 0.5s 0.1s ease both;
+        }
+        .page-hero h1 em { font-style: italic; color: var(--blue); }
+        .page-hero p {
+            font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 480px;
+            animation: fadeDown 0.5s 0.2s ease both;
         }
 
-        .credits-item {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
+        /* MAIN */
+        main {
+            position: relative; z-index: 1;
+            max-width: 900px; margin: 0 auto; padding: 10px 60px 80px;
         }
 
-        .credits-item:last-child {
-            border-bottom: none;
+        /* SECTION LABEL */
+        .section-label {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+        }
+        .section-label-dot {
+            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+        }
+        .section-label span {
+            font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--muted);
         }
 
-        .credits-item img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-right: 20px;
+        /* PRESENTER */
+        .presenter-section { margin-bottom: 60px; }
+
+        .presenter-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            display: flex; align-items: center; gap: 28px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeUp2 0.5s ease both;
+            position: relative; overflow: hidden;
         }
 
-        .credits-item h3 {
-            font-size: 22px;
-            margin: 0;
-            color: #1e88e5;
+        .presenter-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
         }
 
-        .credits-item p {
-            font-size: 16px;
-            color: #555;
+        .presenter-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+
+        .presenter-photo {
+            width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
+            border: 3px solid #e0e7ff; flex-shrink: 0; background: #e2e8f0;
         }
 
-        .contact-links {
-            text-align: center;
-            margin-top: 20px;
+        .presenter-info h3 {
+            font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700;
+            color: var(--dark); margin-bottom: 4px;
+        }
+        .presenter-info .role { font-size: 13px; color: var(--blue); font-weight: 600; margin-bottom: 4px; }
+        .presenter-info .study { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 10px; }
+        .presenter-info a {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s;
+        }
+        .presenter-info a:hover { color: var(--blue); }
+
+        /* GUESTS */
+        .guests-section { margin-bottom: 60px; }
+
+        .guests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
         }
 
-        .contact-links a {
-            color: #1e88e5;
-            font-size: 18px;
-            text-decoration: none;
-            margin: 0 15px;
+        .guest-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            display: flex; align-items: center; gap: 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.25s, box-shadow 0.25s;
+            animation: fadeUp2 0.5s ease both;
+            position: relative; overflow: hidden;
         }
 
-        .contact-links a:hover {
-            text-decoration: underline;
+        .guest-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
         }
 
-        .credits-footer {
-            background-color: #1e88e5;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 14px;
+        .guest-card:nth-child(1)::before { background: var(--blue); }
+        .guest-card:nth-child(2)::before { background: var(--teal); }
+        .guest-card:nth-child(3)::before { background: var(--coral); }
+        .guest-card:nth-child(4)::before { background: var(--purple); }
+
+        .guest-card:nth-child(2) { animation-delay: 0.08s; }
+        .guest-card:nth-child(3) { animation-delay: 0.16s; }
+        .guest-card:nth-child(4) { animation-delay: 0.24s; }
+
+        .guest-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+
+        .guest-photo {
+            width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
+            border: 2px solid #f1f5f9; flex-shrink: 0; background: #e2e8f0;
         }
 
-        .credits-footer a {
-            color: #90caf9;
-            text-decoration: none;
+        .guest-info h3 {
+            font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700;
+            color: var(--dark); margin-bottom: 3px;
         }
-
-        .credits-footer a:hover {
-            text-decoration: underline;
+        .guest-info .specialty { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 4px; }
+        .guest-info .study { font-size: 11px; color: var(--blue); font-style: italic; margin-bottom: 8px; }
+        .guest-info a {
+            font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s;
         }
+        .guest-info a:hover { color: var(--blue); }
 
-        .image-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
+        /* CONTACT */
+        .contact-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+            border-radius: 24px; padding: 50px;
+            text-align: center; position: relative; overflow: hidden;
         }
+        .contact-section::before {
+            content: '✉️'; position: absolute; font-size: 140px;
+            right: -10px; bottom: -20px; opacity: 0.08; pointer-events: none;
+        }
+        .contact-section h2 {
+            font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700;
+            color: white; margin-bottom: 10px;
+        }
+        .contact-section p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 28px; }
+        .contact-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: white; color: var(--blue); text-decoration: none;
+            font-size: 14px; font-weight: 600; padding: 16px 32px; border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15); transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .contact-link:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
 
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        /* FOOTER */
+        footer {
+            position: relative; z-index: 1;
+            background: var(--dark); color: rgba(255,255,255,0.5);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 28px 60px; font-size: 13px; flex-wrap: wrap; gap: 10px;
+        }
+        .footer-logo { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: white; }
+        .footer-logo span { color: var(--coral); }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .page-hero, main { padding: 50px 24px 60px; }
+            .presenter-card { flex-direction: column; text-align: center; }
+            footer { padding: 24px; flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Crédits - Podcast : Science et Données</h1>
-</header>
-
-<div class="credits-container">
-    <h2 class="section-title">Présentateur du Podcast</h2>
-
-    <div class="credits-item">
-        <img src="mano.jpg" alt="Mano Lounaci">
-        <div>
-            <h3>Mano Lounaci</h3>
-            <p>Présentateur du Podcast</p>
-            <p><em>étudiant L2 Cinéma</em></p>
-            <div><a href="mailto:mano.lounaci@gmail.com">mano.lounaci@gmail.com</a></div>
-        </div>
-    </div>
-
-    <h2 class="section-title">Chercheuses et Collaboratrices</h2>
-
-    <div class="credits-item">
-        <img src="grace.png" alt="Grâce Soukou">
-        <div>
-            <h3>Dr. Grâce Soukou</h3>
-            <p>Chercheuse, Analyse des Modèles Mathématiques</p>
-            <p><em>étudiante BUT2 Science des données</em></p>
-            <div><a href="mailto:graceingridsoukou@gmail.com">graceingridsoukou@gmail.com</a></div>
-        </div>
-    </div>
-
-    <div class="credits-item">
-        <img src="Marie.jpg" alt="Marie Samaké">
-        <div>
-            <h3>Dr. Marie Samaké</h3>
-            <p>Chercheuse, Analyse Statistique des Données Médicales</p>
-            <p><em>étudiante BUT2 Science des données</em></p>
-            <div><a href="mailto:smarie.samake@gmail.com">smarie.samake@gmail.com</a></div>
-        </div>
-    </div>
-
-    <div class="credits-item">
-        <img src="shankavi.png"Shankavi Selvanathan">
-        <div>
-            <h3>Dr. Shankavi Selvanathan</h3>
-            <p>Collaboratrice, Applications des Modèles en Oncologie</p>
-            <p><em>étudiante BUT2 Science des données</em></p>
-            <div><a href="mailto:shankavi.Selvanathan@gmail.com">shankavi.Selvanathan@gmail.com</a></div>
-        </div>
-    </div>
-
-    <div class="credits-item">
-        <img src="mariama.png" alt="Mariama Leye">
-        <div>
-            <h3>Dr. Mariama Leye</h3>
-            <p>Collaboratrice, Recherches sur la Régression Logistique</p>
-            <p><em>étudiante BUT2 Science des données</em></p>
-            <div><a href="mailto:mariamaleye252@gmail.com">mariamaleye252@gmail.com</a></div>
-        </div>
-    </div>
-
-
-    <div class="contact-links">
-        <h3>Contactez-nous</h3>
-        <a href="mailto:contact@scienceetdonnees.com">contact@scienceetdonnees.com</a>
-    </div>
+<div class="blob-bg">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
 </div>
 
-<div class="credits-footer">
-    <p>&copy; 2025 Podcast : Science et Données | Tous droits réservés </p>
+<nav>
+    <div class="nav-logo">Science <span>&amp;</span> Données</div>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#episodes">Épisodes</a></li>
+        <li><a href="index.html#ressources">Ressources</a></li>
+        <li><a href="credit.html" class="active">Crédits</a></li>
+    </ul>
+</nav>
+
+<div class="page-hero">
+    <div class="hero-badge">👥 L'équipe</div>
+    <h1>Les voix<br><em>derrière</em> le micro</h1>
+    <p>Présentateur, chercheuses et collaboratrices — découvrez les personnes qui donnent vie à Science et Données.</p>
 </div>
+
+<main>
+
+    <!-- PRÉSENTATEUR -->
+    <section class="presenter-section">
+        <div class="section-label">
+            <div class="section-label-dot" style="background:var(--blue)"></div>
+            <span>Présentateur</span>
+        </div>
+        <div class="presenter-card">
+            <img class="presenter-photo" src="mano.jpg" alt="Mano Lounaci">
+            <div class="presenter-info">
+                <h3>Mano Lounaci</h3>
+                <div class="role">🎙️ Présentateur du Podcast</div>
+                <div class="study">Étudiant L2 Cinéma</div>
+                <a href="mailto:mano.lounaci@gmail.com">✉️ mano.lounaci@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVITÉES -->
+    <section class="guests-section">
+        <div class="section-label">
+            <div class="section-label-dot" style="background:var(--coral)"></div>
+            <span>Chercheuses &amp; Collaboratrices</span>
+        </div>
+        <div class="guests-grid">
+
+            <div class="guest-card">
+                <img class="guest-photo" src="grace.png" alt="Grâce Soukou">
+                <div class="guest-info">
+                    <h3>Grâce Soukou</h3>
+                    <div class="specialty">Analyse des Modèles Mathématiques</div>
+                    <div class="study">BUT2 Science des données</div>
+                    <a href="mailto:graceingridsoukou@gmail.com">✉️ graceingridsoukou@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="guest-card">
+                <img class="guest-photo" src="Marie.jpg" alt="Marie Samaké">
+                <div class="guest-info">
+                    <h3>Marie Samaké</h3>
+                    <div class="specialty">Analyse Statistique des Données Médicales</div>
+                    <div class="study">BUT2 Science des données</div>
+                    <a href="mailto:smarie.samake@gmail.com">✉️ smarie.samake@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="guest-card">
+                <img class="guest-photo" src="shankavi.png" alt="Shankavi Selvanathan">
+                <div class="guest-info">
+                    <h3>Shankavi Selvanathan</h3>
+                    <div class="specialty">Applications des Modèles en Oncologie</div>
+                    <div class="study">BUT2 Science des données</div>
+                    <a href="mailto:shankavi.Selvanathan@gmail.com">✉️ shankavi.selvanathan@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="guest-card">
+                <img class="guest-photo" src="mariama.png" alt="Mariama Leye">
+                <div class="guest-info">
+                    <h3>Mariama Leye</h3>
+                    <div class="specialty">Recherches sur la Régression Logistique</div>
+                    <div class="study">BUT2 Science des données</div>
+                    <a href="mailto:mariamaleye252@gmail.com">✉️ mariamaleye252@gmail.com</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+        <h2>Nous contacter</h2>
+        <p>Une question sur le podcast ou nos travaux ? On vous répond.</p>
+        <a class="contact-link" href="mailto:contact@scienceetdonnees.com">
+            ✉️ contact@scienceetdonnees.com
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-logo">Science <span>&amp;</span> Données</div>
+    <span>© 2025 — Tous droits réservés</span>
+    <a href="index.html">← Retour à l'accueil</a>
+</footer>
 
 </body>
 </html>

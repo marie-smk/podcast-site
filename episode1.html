@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Épisode 01 — Oncologie · Science et Données</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-900: #0c2340; --blue-800: #1a3a5c; --blue-700: #1e4f82;
+            --blue-600: #2563a8; --blue-500: #2980b9; --blue-400: #5ba3d0;
+            --blue-300: #93c4e0; --blue-200: #c8e0f0; --blue-100: #e6f2fb;
+            --blue-50: #f2f8fd; --accent: #f0a500;
+            --white: #ffffff; --text: #1a2d40; --muted: #5a7a96;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--blue-50); color: var(--text); }
+
+        /* NAV */
+        nav {
+            background: var(--blue-900); border-bottom: 3px solid var(--accent);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 60px;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--blue-300); padding: 16px 0; }
+        nav ul { list-style: none; display: flex; }
+        nav ul li a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 18px 20px; transition: color 0.2s; }
+        nav ul li a:hover { color: white; }
+
+        /* HERO */
+        .ep-hero {
+            background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-700) 55%, var(--blue-500) 100%);
+            padding: 60px 60px 50px; position: relative; overflow: hidden;
+        }
+        .ep-hero::before {
+            content: ''; position: absolute; top: -100px; right: -60px;
+            width: 420px; height: 420px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        }
+        .ep-hero-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--blue-300); text-decoration: none; font-size: 12px;
+            font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 28px; transition: color 0.2s;
+        }
+        .back-link:hover { color: white; }
+
+        .ep-badge {
+            display: inline-block;
+            background: rgba(37,99,168,0.3); border: 1px solid rgba(147,196,224,0.4);
+            border-radius: 20px; padding: 5px 14px;
+            font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--blue-200); margin-bottom: 18px;
+        }
+
+        .ep-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4.5vw, 54px); font-weight: 900;
+            line-height: 1.1; color: white; margin-bottom: 16px;
+            max-width: 750px;
+        }
+
+        .ep-hero-desc {
+            font-size: 16px; color: var(--blue-200); max-width: 600px;
+            line-height: 1.7; font-weight: 300;
+        }
+
+        /* MAIN */
+        main { max-width: 1060px; margin: 0 auto; padding: 60px 60px 80px; }
+
+        /* PLAYER */
+        .player-section {
+            background: white; border-radius: 20px;
+            padding: 36px; margin-bottom: 50px;
+            box-shadow: 0 4px 24px rgba(37,99,168,0.08);
+        }
+
+        .player-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+        }
+
+        audio {
+            width: 100%; border-radius: 12px; height: 44px;
+        }
+
+        /* TWO COL */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 28px;
+            margin-bottom: 50px;
+        }
+
+        /* SUMMARY */
+        .summary-card {
+            background: white; border-radius: 20px; padding: 36px;
+            box-shadow: 0 4px 24px rgba(37,99,168,0.08);
+        }
+
+        .card-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; font-weight: 700; color: var(--blue-900);
+            margin-bottom: 18px; padding-bottom: 14px;
+            border-bottom: 2px solid var(--blue-100);
+        }
+
+        .summary-card p {
+            font-size: 14px; line-height: 1.8; color: var(--muted); margin-bottom: 14px;
+        }
+
+        .key-points { list-style: none; margin-top: 10px; }
+        .key-points li {
+            display: flex; gap: 12px; align-items: flex-start;
+            font-size: 14px; line-height: 1.6; color: var(--text);
+            padding: 10px 0; border-bottom: 1px solid var(--blue-50);
+        }
+        .key-points li:last-child { border-bottom: none; }
+        .kp-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--blue-500); margin-top: 6px; flex-shrink: 0;
+        }
+
+        /* CREDITS SIDEBAR */
+        .credits-card {
+            background: white; border-radius: 20px; padding: 28px;
+            box-shadow: 0 4px 24px rgba(37,99,168,0.08);
+            height: fit-content;
+        }
+
+        .credits-card .card-section-title { font-size: 18px; }
+
+        .credit-person {
+            display: flex; align-items: center; gap: 14px;
+            padding: 14px 0; border-bottom: 1px solid var(--blue-50);
+        }
+        .credit-person:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .credit-photo {
+            width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--blue-100); flex-shrink: 0; background: var(--blue-200);
+        }
+
+        .credit-info h4 { font-size: 14px; font-weight: 600; color: var(--blue-900); margin-bottom: 2px; }
+        .credit-role { font-size: 11px; color: var(--blue-500); font-weight: 500; margin-bottom: 2px; }
+        .credit-study { font-size: 11px; color: var(--muted); font-style: italic; }
+        .credit-mail { font-size: 11px; color: var(--muted); text-decoration: none; }
+        .credit-mail:hover { color: var(--blue-600); }
+
+        /* RESOURCES */
+        .resources-row {
+            display: flex; gap: 20px; margin-bottom: 50px; flex-wrap: wrap;
+        }
+
+        .resource-card {
+            flex: 1; min-width: 240px;
+            background: white; border-radius: 20px; padding: 28px;
+            box-shadow: 0 4px 24px rgba(37,99,168,0.08);
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        .resource-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px; font-weight: 700; color: var(--blue-900);
+        }
+
+        .resource-card p { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
+
+        .resource-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--blue-700); color: white;
+            text-decoration: none; font-size: 12px; font-weight: 600;
+            padding: 12px 20px; border-radius: 10px;
+            transition: background 0.2s, transform 0.2s; width: fit-content;
+        }
+        .resource-btn:hover { background: var(--blue-600); transform: translateY(-2px); }
+
+        .resource-btn.cagnotte {
+            background: linear-gradient(135deg, #e05e00, #f0a500);
+        }
+        .resource-btn.cagnotte:hover { filter: brightness(1.1); background: linear-gradient(135deg, #e05e00, #f0a500); }
+
+        /* MODAL RICKROLL */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.85); z-index: 1000;
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal-box {
+            background: var(--blue-900); border-radius: 20px;
+            padding: 28px; width: 90%; max-width: 760px;
+            position: relative;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-close {
+            position: absolute; top: 16px; right: 16px;
+            background: rgba(255,255,255,0.1); border: none;
+            color: white; font-size: 20px; width: 36px; height: 36px;
+            border-radius: 50%; cursor: pointer; display: flex;
+            align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.2); }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif; font-size: 20px;
+            color: white; margin-bottom: 16px; padding-right: 40px;
+        }
+
+        .modal-video {
+            position: relative; padding-bottom: 56.25%;
+            border-radius: 12px; overflow: hidden;
+        }
+        .modal-video iframe {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--blue-900); color: rgba(255,255,255,0.45);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 26px 60px; font-size: 12px; flex-wrap: wrap; gap: 10px;
+        }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: white; }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        @media (max-width: 800px) {
+            nav, .ep-hero, main, footer { padding-left: 20px; padding-right: 20px; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-logo">S &amp; D</div>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#episodes">Épisodes</a></li>
+        <li><a href="index.html#ressources">Ressources</a></li>
+    </ul>
+</nav>
+
+<div class="ep-hero">
+    <div class="ep-hero-inner">
+        <a class="back-link" href="index.html">← Retour aux épisodes</a>
+        <div class="ep-badge">Épisode 01 · Mathématiques &amp; Santé</div>
+        <h1>Les modèles mathématiques au service de l'oncologie</h1>
+        <p class="ep-hero-desc">Comment les mathématiques et la médecine s'allient pour analyser les tumeurs ? De la collecte des données cliniques à l'application des modèles, découvrez comment différencier tumeurs bénignes et malignes.</p>
+    </div>
+</div>
+
+<main>
+
+    <!-- PLAYER -->
+    <div class="player-section">
+        <div class="player-label">🎧 Écouter l'épisode</div>
+        <audio controls>
+            <source src="Podcast.mp3" type="audio/mpeg">
+            Votre navigateur ne prend pas en charge l'audio.
+        </audio>
+    </div>
+
+    <!-- CONTENT + CREDITS -->
+    <div class="content-grid">
+
+        <!-- SUMMARY -->
+        <div class="summary-card">
+            <h2 class="card-section-title">Résumé de l'épisode</h2>
+            <p>Dans cet épisode, plongez au cœur d'une recherche fascinante où mathématiques et médecine s'allient pour analyser les tumeurs. Accompagnées de quatre expertes, nous explorons comment les modèles mathématiques peuvent aider à différencier les tumeurs bénignes des malignes.</p>
+            <p>De la collecte des données cliniques à l'application des modèles, découvrez les défis, les méthodologies et les résultats prometteurs de cette étude innovante. Un podcast accessible à tous, où la science devient claire et captivante.</p>
+
+            <h3 style="font-family:'Playfair Display',serif;font-size:17px;color:var(--blue-900);margin:20px 0 12px;">Points clés abordés</h3>
+            <ul class="key-points">
+                <li><div class="kp-dot"></div><span>Qu'est-ce qu'un modèle mathématique en médecine et à quoi sert-il ?</span></li>
+                <li><div class="kp-dot"></div><span>Comment les données cliniques sont collectées et traitées pour l'analyse.</span></li>
+                <li><div class="kp-dot"></div><span>La régression logistique comme outil de classification des tumeurs.</span></li>
+                <li><div class="kp-dot"></div><span>Les défis éthiques et techniques de l'IA appliquée à la santé.</span></li>
+                <li><div class="kp-dot"></div><span>Les perspectives futures pour l'oncologie computationnelle.</span></li>
+            </ul>
+        </div>
+
+        <!-- CREDITS SIDEBAR -->
+        <div class="credits-card">
+            <h2 class="card-section-title">Crédits</h2>
+
+            <div class="credit-person">
+                <img class="credit-photo" src="mano.jpg" alt="Mano">
+                <div class="credit-info">
+                    <h4>Mano Lounaci</h4>
+                    <div class="credit-role">🎙️ Présentateur</div>
+                    <div class="credit-study">Étudiant L2 Cinéma</div>
+                    <a class="credit-mail" href="mailto:mano.lounaci@gmail.com">mano.lounaci@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="credit-person">
+                <img class="credit-photo" src="grace.png" alt="Grâce">
+                <div class="credit-info">
+                    <h4>Grâce Soukou</h4>
+                    <div class="credit-role">📊 Modèles Mathématiques</div>
+                    <div class="credit-study">BUT2 Science des données</div>
+                    <a class="credit-mail" href="mailto:graceingridsoukou@gmail.com">graceingridsoukou@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="credit-person">
+                <img class="credit-photo" src="Marie.jpg" alt="Marie">
+                <div class="credit-info">
+                    <h4>Marie Samaké</h4>
+                    <div class="credit-role">📈 Analyse Statistique</div>
+                    <div class="credit-study">BUT2 Science des données</div>
+                    <a class="credit-mail" href="mailto:smarie.samake@gmail.com">smarie.samake@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="credit-person">
+                <img class="credit-photo" src="shankavi.png" alt="Shankavi">
+                <div class="credit-info">
+                    <h4>Shankavi Selvanathan</h4>
+                    <div class="credit-role">🔬 Applications en Oncologie</div>
+                    <div class="credit-study">BUT2 Science des données</div>
+                    <a class="credit-mail" href="mailto:shankavi.Selvanathan@gmail.com">shankavi.selvanathan@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="credit-person">
+                <img class="credit-photo" src="mariama.png" alt="Mariama">
+                <div class="credit-info">
+                    <h4>Mariama Leye</h4>
+                    <div class="credit-role">📉 Régression Logistique</div>
+                    <div class="credit-study">BUT2 Science des données</div>
+                    <a class="credit-mail" href="mailto:mariamaleye252@gmail.com">mariamaleye252@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESOURCES -->
+    <div class="resources-row">
+        <div class="resource-card">
+            <h3>📄 Publication des chercheuses</h3>
+            <p>Accédez au travail complet des chercheuses — méthodologie, résultats et conclusions de l'étude.</p>
+            <a class="resource-btn" href="https://drive.google.com/file/d/1lt4LqaibE9_vlmSbdvFuLCUZLMIgTbNN/view?usp=drive_link" target="_blank">
+                Voir la publication →
+            </a>
+        </div>
+
+        <div class="resource-card">
+            <h3>💛 Soutenir l'ONG de Mariama</h3>
+            <p>Mariama travaille pour l'accès à l'eau potable dans les pays en développement. Soutenez son ONG !</p>
+            <a class="resource-btn cagnotte" href="#" onclick="openRickroll(event)">
+                Faire un don →
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-logo">Science &amp; Données</div>
+    <span>© 2025 — Tous droits réservés</span>
+</footer>
+
+<!-- RICKROLL MODAL -->
+<div class="modal-overlay" id="rickrollModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeRickroll()">✕</button>
+        <div class="modal-title">🎶 Merci pour votre générosité !</div>
+        <div class="modal-video">
+            <iframe id="rickrollFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openRickroll(e) {
+        e.preventDefault();
+        document.getElementById('rickrollFrame').src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+        document.getElementById('rickrollModal').classList.add('open');
+    }
+    function closeRickroll() {
+        document.getElementById('rickrollFrame').src = '';
+        document.getElementById('rickrollModal').classList.remove('open');
+    }
+    document.getElementById('rickrollModal').addEventListener('click', function(e) {
+        if (e.target === this) closeRickroll();
+    });
+</script>
+
+</body>
+</html>
